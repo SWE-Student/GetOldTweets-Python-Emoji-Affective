@@ -39,7 +39,7 @@ def exportToCsv():
 
         def receiveBuffer(tweets):
             for t in tweets:
-                print(t.text)
+                # print(t.text)
                 add_list = []
                 if (isinstance(t.emojis, list)):
                     emoji = ' '.join(t.emojis)
@@ -54,10 +54,28 @@ def exportToCsv():
 
         # got.manager.TweetManager.getTweets(tweetCriteria, receiveBuffer)
 
+
+        # Joy:
         desiredEmojis = '\U0001F600 \U0001F602 \U0001F603 \U0001F604 \U0001F606 \U0001F607 \U0001F609 \U0001F60A \U0001F60B \U0001F60C \U0001F60D \U0001F60E \U0001F60F \U0001F31E'
-        desiredEmojis +=  '  \U0001F618 \U0001F61C \U0001F61D \U0001F61B \U0001F63A \U0001F638 \U0001F639 \U0001F63B \U0001F63C  \U0001F496 \U0001F495 \U0001F601 ' 
-        desiredEmojis += ' \U0001F62C \U0001F620 \U0001F610 \U0001F611 \U0001F620 \U0001F621 \U0001F616 \U0001F624 \U0001F63E \U0001F4A9 \U0001F605 \U0001F626 \U0001F627 \U0001F631 \U0001F628 \U0001F630 \U0001F640 \U0001F614 \U0001F615  \U0001F62B \U0001F629 \U0001F622 \U0001F625 \U0001F62A \U0001F613 \U0001F62D \U0001F63F \U0001F494 \U0001F633 \U0001F62F \U0001F635 \U0001F632'
-        desiredEmojis += ' \U0000263A \U00002764 \U00002665 \U00002639'
+        desiredEmojis +=  '  \U0001F618 \U0001F61C \U0001F61D \U0001F61B \U0001F63A \U0001F638 \U0001F639 \U0001F63B \U0001F63C  \U00002764  \U0001F496 \U0001F495 \U0001F601 \U00002665 \U0000263A' 
+
+        # Anger:
+        desiredEmojis += '  \U0001F62C \U0001F620 \U0001F610 \U0001F611 \U0001F621 \U0001F616 \U0001F624 \U0001F63E '
+        desiredEmojis += ' \U0001F4A2  \U0001F47F \U0001F92C '
+        
+        # Disgust:
+        desiredEmojis += ' \U0001F4A9 \U0001F922 \U0001F92E \U0001F637 '
+
+        # Fear:
+        desiredEmojis += ' \U0001F605 \U0001F626 \U0001F627 \U0001F631 \U0001F628 \U0001F630 \U0001F640  '
+
+        # Sad:
+        desiredEmojis += '   \U0001F614 \U0001F615 \U00002639 \U0001F62B \U0001F629 \U0001F622 \U0001F625 \U0001F62A \U0001F613 \U0001F62D \U0001F63F \U0001F494 '
+
+        # Surprise:
+        desiredEmojis += ' \U0001F633 \U0001F62F \U0001F635 \U0001F632 \U0001F92F \U0001F62E '
+
+
 
         desiredEmojis = desiredEmojis.split()
 
@@ -65,10 +83,11 @@ def exportToCsv():
             currEmoji = emoji.emojize(unicodeEmoji)
 
             # current:
-            # tweetCriteria = got.manager.TweetCriteria().setQuerySearch(currEmoji).setLang('en').setMaxTweets(162)
+            # tweetCriteria = got.manager.TweetCriteria().setQuerySearch(currEmoji).setLang('en').setMaxTweets(1000)
 
             #date boundary:
-            tweetCriteria = got.manager.TweetCriteria().setSince("2019-05-01").setUntil("2019-09-30").setQuerySearch(currEmoji).setLang('en').setMaxTweets(162)
+            # tweetCriteria = got.manager.TweetCriteria().setSince("2019-05-01").setUntil("2019-09-30").setQuerySearch(currEmoji).setLang('en').setMaxTweets(162)
+            tweetCriteria = got.manager.TweetCriteria().setSince("2018-01-01").setUntil("2019-05-01").setQuerySearch(currEmoji).setLang('en').setMaxTweets(1000)
 
             
             got.manager.TweetManager.getTweets(tweetCriteria, receiveBuffer)
